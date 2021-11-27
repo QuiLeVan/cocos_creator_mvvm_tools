@@ -1,60 +1,59 @@
 # cocos_creator_mvvm_tools 0.1.1
 
-### 版本说明
-v0.1.0 - Typescript 的 稳定版本
-v0.1.1 - 修复VMParent onLoad顺序的错误,调整部分组件初始化值的时间
+### Release notes
+v0.1.0-The stable version of Typescript
+v0.1.1-Fix the error of VMParent onLoad sequence and adjust the time of initial value of some components
 
-### 版本计划
-移植 Cocos Creator 3D 1.2 版本，增强功能
-移植 Cocos Creator 3.0 版本 (待定)
+### Version plan
+Ported Cocos Creator 3D 1.2 version, enhanced functions
+Port Cocos Creator 3.0 version (to be confirmed)
 
-### 简介
+### Introduction
 
-适用于cocos creator 的 mvvm 的工具 集，摆脱传统MVC设置节点属性来控制 UI 的方式。你可以更快捷、更细致地处理UI的表现效果。不写一行代码完成复杂的显示逻辑。设计这个框架的目地就是为了解决 数据和节点状态变化切换的麻烦关系。
+The mvvm tool set for cocos creator, get rid of the traditional MVC way of setting node attributes to control the UI. You can handle UI performance more quickly and in detail. Do not write a line of code to complete the complex display logic. The purpose of designing this framework is to solve the troublesome relationship between data and node state change and switching.
 
-### 更新
-增加JS 调用 TS 用例 2019/6/1
+### renew
+Add JS to call TS use case 2019/6/1
 
-### 功能
+### Function
 
-1. 不需要写任何代码，设置脚本组件的参数即可 将 监听路径的数值 可以立刻得到反馈。
-2. 更加灵活的获取数据变化时的事件，实现各种难以处理的细节交互。
-3. 彻底分离UI处理 和 游戏逻辑处理，专注处理业务逻辑。
+1. You don't need to write any code, just set the parameters of the script component and you can get immediate feedback on the value of the monitoring path.
+2. More flexible access to events when data changes, and realize various detailed interactions that are difficult to handle.
+3. Completely separate UI processing and game logic processing, and focus on processing business logic.
 
-### 注意事项
+### Precautions
 
-1. 查错困难: 一旦绑定组件后，想要根据情况查找和调查bug位置，会变得困难一些。(也是组件化的缺点)
-2. 设计数据模型后不能随意改变属性名，一旦需要修改就必须打开Cocos 来改动，这会比较依赖于编辑器操作。所以在内部提供了一个小组件来批量替换路径名。
+1. Difficulty in troubleshooting: Once the component is bound, it will become more difficult to find and investigate the location of the bug based on the situation. (Also the disadvantage of componentization)
+2. After designing the data model, you cannot change the attribute name at will. Once you need to modify it, you must open Cocos to change it, which will depend on the editor operation. Therefore, a small component is provided internally to replace path names in batches.
 
-### 项目结构
+### Project structure
 
-核心脚本文件存放在 assets\Script\modelView 路径,要使用必须全部引入
+The core script files are stored in the assets\Script\modelView path, all must be imported to use
 
-- **JsonOb.ts** -  实现基础的 观察者模式, 改变绑定的数据会自动调用回调函数。你可以随时替换成自己写的观察者。
-- **ViewModel.ts** - VM的核心模块，动态管理ViewModel，使用 cc.director.emit 通知 游戏内的节点组件改变状态。
-- **VMBase.ts** - VM监听核心组件，用于接收ViewModel 的数值变动消息。VMCustom /VMEvent 之类的衍生组件都是继承自VMBase
-- **VMParent.ts** - VM父组件，适合 prefab 弹窗使用， 它将数据绑定在继承 VMparent 的组件上，只属于此次创建的实例。 需要以特殊方式继承使用。
+-**JsonOb.ts**-Realize the basic observer mode, the callback function will be called automatically when the bound data is changed. You can replace it with an observer written by yourself at any time.
+-**ViewModel.ts**-The core module of the VM, dynamically manages the ViewModel, and uses cc.director.emit to notify the node components in the game to change state.
+-**VMBase.ts**-VM monitoring core component, used to receive the value change message of the ViewModel. Derivative components such as VMCustom /VMEvent are inherited from VMBase
+-**VMParent.ts**-VM parent component, suitable for prefab pop-up windows. It binds data to components that inherit VMparent, which only belongs to the instance created this time. It needs to be inherited and used in a special way.
 
-### 用法说明
+### Instructions
 
-- 基本用法
+-Basic usage
 
-  **导入框架** -  导入  assets\Script\modelView 中的所有脚本
-  **建立数据模型**  -  任意位置新建一个数据脚本，定义自己的数据模型，使用VM.add(data,'tag') 添加viewModel。 可以通过VM引用该数据，或者自己全局管理该数据模型。
-  **挂脚本**  -  编辑器中直接添加组件 VMCustom ，它会自动识别绑定到需要设置值的组件和组件的属性，比如cc.Label、cc.Progress等。 你只要填写对应的watchPath, 就会自动赋值到组件的属性上。比如填写 global.play.hp
-  **改数据**  -  在游戏中任意改变 global.play.hp的值，对应的label 就会自动改变数值。
+  **Import Framework**-Import all scripts in assets\Script\modelView
+  **Create data model**-Create a new data script anywhere, define your own data model, and use VM.add(data,'tag') to add viewModel. The data can be referenced through the VM, or the data model can be managed globally by yourself.
+  **Hanging script**-Add the component VMCustom directly to the editor, it will automatically identify the component and its properties that need to be set, such as cc.Label, cc.Progress, etc. As long as you fill in the corresponding watchPath, it will be automatically assigned to the properties of the component. For example, fill in global.play.hp
+  **Change data**-Change the value of global.play.hp arbitrarily in the game, and the corresponding label will automatically change the value.
 
-- 全局注册VM:    (全局自由使用路径)
-   VM.add(data,'tag'); // 
+-Global registration of VM: (Global free use path)
+   VM.add(data,'tag'); //
 
-- 局部组件使用VM:   (只在组件内使用的相对路径)
-  1.继承VMParent 组件
-  2.在组件内设置 data 数据（data属性） 
-  3.相对路径 使用  *.name 的方式设置 watchPath,VMParent 会在 onLoad 的时候自动将 * 替换成 实际的 ViewModel 标签，以便监听数据变化。
+-Partial components use VM: (relative path only used within components)
+  1. Inherit the VMParent component
+  2. Set data in the component (data attribute)
+  3. Relative path Use *.name to set watchPath, VMParent will automatically replace * with the actual ViewModel tag during onLoad to monitor data changes.
 
-### 帮助说明
+### Help description
 
-具体使用方式请查看附带文档：/docs
+Please check the attached document for specific usage: /docs
 
-[使用文档]（ https://github.com/wsssheep/cocos_creator_mvvm_tools/tree/master/docs ）
-
+[Use Document] (https://github.com/wsssheep/cocos_creator_mvvm_tools/tree/master/docs)
