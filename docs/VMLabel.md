@@ -1,33 +1,33 @@
 ## VM Label
 
-### 介绍 
+### introduce 
 
-VM组件文本监听，用于处理 Label 的监听问题。监听watchPath  路径 数值的变动情况，变动Label文本内容。使用模板模式，还可以将输入的字符串格式化。可以监听多路径，来同时在一个label上显示多个数据源的信息。
+The VM component text monitoring is used to handle the monitoring problem of Label. Monitor the change of the watchPath path value and change the label text content. Using template mode, you can also format the input string. You can monitor multiple paths to display information from multiple data sources on a label at the same time.
 
-### 编辑器属性
+### Editor properties
 
-- `Template Mode` - 多路径模板模式，开启后可以监听多路径，并且可以设置文本模板
-- `Watch Path ` - 绑定数值监听路径
+-`Template Mode`-Multi-path template mode, you can monitor multi-path after it is turned on, and you can set text templates
+-`Watch Path`-Bind the value monitoring path
 
-- `Watch PathArr` - 绑定数值监听的路径数组 (多路径模板模式开启后出现)
+-`Watch PathArr`-Array of paths for binding value monitoring (appears after multipath template mode is turned on)
 
-- `Label Type` - 只读属性，自动绑定cc.Label 或者 cc.RichText，你可以在脚本修改自己定义的Label
+-`Label Type`-Read-only property, automatically bind cc.Label or cc.RichText, you can modify the label you define in the script
 
 
 
-### 关于模板解析
+### About template analysis
 
-使用 {{0}} {{1}} {{2}} 方式设置模板内容（设置label 的 String 默认值）。在运行时，会动态的获取多路径监听的值，按数组内index 顺序替换掉 {{index}}。你可以额外添加修饰符号来格式化信息源，比如 {{0:int}} 会将数字内容以整数显示，{{0:time}} 以时间格式显示时间戳 等。
+Use {{0}} {{1}} {{2}} to set the template content (set the label’s String default value). At runtime, the value of multipath monitoring will be dynamically obtained, and {{index}} will be replaced in the order of index in the array. You can add additional modifiers to format the information source. For example, {{0:int}} will display digital content as integers, {{0:time}} will display timestamps in time format, etc.
 
-以下是目前支持的格式化内容: 
+The following are currently supported formatted content:
 
-- `int`  - 只显示整数部分
-- `fix(n)` -显示小数位数
-- `kmbt` - 以 K M B T 单位 缩短数字长度
-- `per `  - 显示百分比
-- `sep` - 以千位分号分割数字
-- `limit(n)` - 限制文本字符长度
+-`int`-only the integer part is displayed
+-`fix(n)`-display decimal places
+-`kmbt`-shorten the length of the number in K M B T units
+-`per`-display percentage
+-`sep`-Separate numbers with thousands of semicolons
+-`limit(n)`-limit text character length
 
-### 自定义模板格式
+### Custom template format
 
-所有 文本格式处理 都放在 StringFormat 类中，你可以根据自定义需要修改其中的函数。
+All text format processing is placed in the StringFormat class, and you can modify the functions in it according to your needs.
