@@ -1,23 +1,22 @@
 ## VM Parent
 
-### 介绍 
+### introduce 
 
-如果你想要让你的组件具有 动态监听数据的能力，需要继承 VMParent 使用。监听的数据类型为组件实例自身所有，是局部的数据而非全局数据。
+If you want your component to have the ability to dynamically monitor data, you need to inherit the use of VMParent. The monitored data type is owned by the component instance itself, and is local data rather than global data.
 
-### 属性
+### Attributes
 
-`data` - 定义需要绑定的数据类型，只在该组件内有效。定义后，这些数据就会被自动绑定。
+`data`-Define the data type to be bound, which is only valid in this component. After definition, these data will be automatically bound.
 
-`onBind()` - 数据绑定完成后调用该方法
+`onBind()`-call this method after data binding is complete
 
-`onUnBind()` - 数据绑定解除之前调用该方法
+`onUnBind()`-This method is called before the data binding is released
 
-`tag` -  绑定的标签，可以通过这个tag 获取 当前的 vm 实例
+`tag`-The bound tag, the current vm instance can be obtained through this tag
 
-`VM` - VM 管理对象，可以使用该对象获取值路径
+`VM`-VM management object, you can use the object to get the value path
 
-### 注意事项
+### Precautions
 
-- 如果你不清楚继承机制，不要随意覆盖 onLoad() 事件，请使用 onBind() 函数代替 onLoad() 函数, onUnBind() 函数代替 onDestroy() 函数。如果你熟悉，可以使用super.onLoad() 的方式 调用父方法
-- 不要过多的嵌套使用VMParent, 在绑定时可能会影响一点性能
-
+-If you are not clear about the inheritance mechanism, do not overwrite the onLoad() event at will. Please use the onBind() function instead of the onLoad() function, and the onUnBind() function instead of the onDestroy() function. If you are familiar with it, you can use super.onLoad() to call the parent method
+-Don't use VMParent too much nesting, it may affect performance a little when binding
