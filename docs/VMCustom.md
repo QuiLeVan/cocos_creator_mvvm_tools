@@ -1,17 +1,16 @@
 ## VM Custom
 
-### 介绍 
+### introduce 
 
-VM组件自定义, 可以设置需要监听的 组件名称和组件属性，并且挂载时还能自动识别组件名。比较泛用。适合任意的自制组件。(如果想自动识别自己写的组件名，可以修改脚本配置内容)。
+VM component customization, you can set the component name and component properties that need to be monitored, and automatically identify the component name when mounting. More general use. Suitable for any self-made components. (If you want to automatically recognize the component name you wrote, you can modify the script configuration content).
 
-### 编辑器属性
+### Editor properties
 
-- `Controller` -   激活controller,以开启双向绑定，否则只能接收消息
-- `Watch Path` - 绑定数值监听路径
+-`Controller`-Activate the controller to enable two-way binding, otherwise you can only receive messages
+-`Watch Path`-Bind the value monitoring path
 
-- `Component Name`  -  绑定组件的名字 (会根据脚本配置自动识别)
+-`Component Name`-the name of the bound component (it will be automatically identified according to the script configuration)
 
-- `Component Property`  -  绑定组件上需要监听的属性  (会根据脚本配置自动识别)
+-`Component Property`-bind the property that needs to be monitored on the component (it will be automatically identified according to the script configuration)
 
-- `refreshRate` - 刷新间隔频率 (只影响脏检查的频率) ，controller开启后生效
-
+-`refreshRate`-refresh interval frequency (only affects the frequency of dirty checking), it takes effect after the controller is turned on
