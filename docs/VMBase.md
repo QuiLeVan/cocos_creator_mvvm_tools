@@ -1,39 +1,39 @@
 ## VM Base
 
-### 介绍 
+### introduce 
 
-VM基础组件，只实现了数据绑定, 需要被继承使用。你可以通过继承VM Base来实现自己的VM组件。当然一般情况下使用这个工具所提供的其他组件脚本就够用了。
+VM basic components only implement data binding and need to be inherited and used. You can implement your own VM components by inheriting VM Base. Of course, it is sufficient to use other component scripts provided by this tool under normal circumstances.
 
-### 脚本属性
+### Script attributes
 
-- `watchPath` - 需要监听的路径,，你在VM怎么定义的结构，就在这里写上取值的路径。
+-`watchPath`-The path that needs to be monitored, how you define the structure in the VM, just write the value path here.
 
-   比如global 标签的 viewModel 要取值player.atk, 就是gloabl.player.atk。
+   For example, the viewModel of the global tag should take the value player.atk, which is gloabl.player.atk.
 
-- `watchPathArr` - 需要监听的多路径 数组, 和上面一样，不过需要监听的是一个路径的数组。
+-`watchPathArr`-The multipath array that needs to be monitored, the same as above, but it is an array of paths that needs to be monitored.
 
-- `templateMode` - 模板模式（多路径模式），启用后才能监听 watchPathArr 数组中的所有路径
+-`templateMode`-template mode (multi-path mode), all paths in the watchPathArr array can be monitored after being enabled
 
-- `templateValueArr` -  缓存监听路径的值，当监听某个路径的值发生变动时，会自动更新该数组中缓存的值。一般不需要考虑使用。
+-`templateValueArr`-Cache the value of the monitoring path. When the value of a monitoring path changes, the value cached in the array will be automatically updated. Generally do not need to consider the use.
 
-- `VM` - VMManager 对象的引用，参考ViewModel 的说明
+-`VM`-Reference of VMManager object, refer to the description of ViewModel
 
-- `onLoad()` -   提前拆分、并且解析 监听的路径,可以捕获一些错误
+-`onLoad()`-Split in advance and analyze the listening path to catch some errors
 
-   **如果需要重写onLoad 方法**，请根据顺序调用 **super.onLoad()**，执行默认方法。直接覆盖将会导致函数的功能丢失。
+   **If you need to override the onLoad method**, please call **super.onLoad()** in order to execute the default method. Overwriting directly will result in the loss of the functionality of the function.
 
-- `onEnable()` - 激活节点时，更新对象初始值，同时开启对 watchPath 的监听。
+-`onEnable()`-When the node is activated, the initial value of the object is updated, and the monitoring of watchPath is turned on at the same time.
 
-  **可重写**，重写时需要调用 super.onEnable() 处理父方法
+  **Rewriteable**, you need to call super.onEnable() to handle the parent method when rewriting
 
-- `onDisable()`- 关闭节点时，关闭对 watchPath 的监听。
+-`onDisable()`- When closing the node, turn off the monitoring of watchPath.
 
-  **可重写**，重写时需要调用 super.onDisable() 处理父方法
+  **Rewriteable**, you need to call super.onDisable() to handle the parent method when rewriting
 
-- `onValueInit()`- 初始化值时调用函数
+-`onValueInit()`- Call the function when initializing the value
 
-  虚方法，可以直接被重写。
+  Virtual methods can be overridden directly.
 
-- `onValueChanged(newValue,oldValue,pathArray)` -  当值改变时调用函数
+-`onValueChanged(newValue,oldValue,pathArray)`-call the function when the value changes
 
-  虚方法，可以直接被重写。
+  Virtual methods can be overridden directly.
