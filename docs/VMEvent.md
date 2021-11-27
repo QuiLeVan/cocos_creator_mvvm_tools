@@ -1,22 +1,22 @@
 ## VM Event
 
-### 介绍 
+### introduce 
 
-VM组件事件，监听watchPath  路径 数值的变动情况，调用回调函数。可以同时监听复数路径的值。适合需要自己处理数值变化行为的场合。比如获得1金币，想让数字闪烁一下，有了VMEvent ，你就不用手动去让数字闪烁了。可以在编辑器中直接设置回调，来触发别的组件的函数。
+VM component event, monitor the change of watchPath path value, call the callback function. You can monitor the value of multiple paths at the same time. Suitable for occasions where you need to deal with the behavior of changing values ​​by yourself. For example, if you get 1 gold coin and want to make the number flash, with VMEvent, you don't have to manually make the number flash. You can set callbacks directly in the editor to trigger the functions of other components.
 
-### 编辑器属性
+### Editor properties
 
-- `Template Mode` - 多路径模板模式，开启后可以监听多路径
-- `Watch Path ` - 绑定数值监听路径
+-`Template Mode`-Multi-path template mode, you can monitor multi-path after opening
+-`Watch Path`-Bind the value monitoring path
 
-- `Watch PathArr` - 绑定数值监听的路径数组 (多路径模板模式开启后出现)
+-`Watch PathArr`-Array of paths for binding value monitoring (appears after multipath template mode is turned on)
 
-- `Component Name`  -  绑定组件的名字 (会根据脚本配置自动识别)
+-`Component Name`-the name of the bound component (it will be automatically identified according to the script configuration)
 
-- `Component Property`  -  绑定组件上需要监听的属性  (会根据脚本配置自动识别)
+-`Component Property`-bind the property that needs to be monitored on the component (it will be automatically identified according to the script configuration)
 
-- `Trigger Once` - 事件通知只传递一次，然后自动 disabled 该组件
+-`Trigger Once`-The event notification is delivered only once, and then the component is automatically disabled
 
-- `Filter Mode` -  根据条件过滤通知事件，比如 当值>=30 才会通知事件去调用 Change Events
+-`Filter Mode`-Filter notification events according to conditions, for example, when the value is >=30, the notification event will be notified to call Change Events
 
-- `Change Events` - 值路径改变事件，和按钮回调事件类似 在编辑器里绑定对应要执行的节点函数
+-`Change Events`-Value path change event, similar to button callback event, bind the corresponding node function to be executed in the editor
