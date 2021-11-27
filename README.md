@@ -55,5 +55,4 @@ The core script files are stored in the assets\Script\modelView path, all must b
 ### Help description
 
 Please check the attached document for specific usage: /docs
-
-[Use Document] (https://github.com/wsssheep/cocos_creator_mvvm_tools/tree/master/docs)
+[Use Document] (https://github.com/QuiLeVan/cocos_creator_mvvm_tools/tree/master/docs)
